@@ -33,3 +33,16 @@ Cleanup:
 ```text
 ▶ deactivate
 ```
+
+Return to the Virtualenv later without reinstalling:
+
+```text
+▶ . virtualenv/bin/activate
+▶ sam --version
+SAM CLI, version 0.10.0
+```
+
+Useful docs:
+
+- [Use Python effectively on Mac OS X](http://blog.manbolo.com/2014/09/27/use-python-effectively-on-os-x).
+- [My Stack Overflow question](https://stackoverflow.com/q/53913862/3787051).
