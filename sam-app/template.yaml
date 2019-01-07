@@ -12,6 +12,7 @@ Resources:
       CodeUri: hello-world/
       Handler: app.lambdaHandler
       Runtime: nodejs6.10
+      Policies: AmazonS3ReadOnlyAccess
       Environment:
         Variables:
           PARAM1: VALUE
