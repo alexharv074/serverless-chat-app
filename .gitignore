@@ -1,2 +1,3 @@
 virtualenv/
 sam-app/.aws-sam
+sam-app/packaged.yaml
