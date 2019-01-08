@@ -8,12 +8,7 @@ set -x
 
 sam build || exit $?
 
-cd hello-world
-npm i
-cd ..
-
 sam package \
-  --template-file template.yaml \
   --output-template-file packaged.yaml \
   --s3-bucket $s3_bucket || exit $?
 
