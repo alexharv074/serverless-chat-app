@@ -6,5 +6,9 @@
   {
     "participants": ["Student", "Frank"],
     "id": "2"
+  },
+  {
+    "participants": ["Student", "Alex"],
+    "id": "3"
   }
 ]
