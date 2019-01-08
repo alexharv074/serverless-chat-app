@@ -37,20 +37,20 @@ let response;
  * @returns {Object} object.body - JSON Payload to be returned
  * 
  */
-exports.lambdaHandler = function (event, context, callback) {
-    axios(url)
-        .then(function (ret) {
-            response = {
-                'statusCode': 200,
-                'body': JSON.stringify({
-                    message: 'hello world',
-                    location: ret.data.trim()
-                })
-            }
-            callback(null, response);
-        })
-        .catch(function (err) {
-            console.log(err);
-            callback(err);
-        });
+exports.lambdaHandler = async (event, context) => {
+    try {
+        const ret = await axios(url);
+        response = {
+            'statusCode': 200,
+            'body': JSON.stringify({
+                message: 'hello world',
+                location: ret.data.trim()
+            })
+        }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+
+    return response
 };
