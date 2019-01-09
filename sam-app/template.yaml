@@ -1,15 +1,15 @@
 ---
 AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
-Description: Hello World App
+Description: Serverless Chat App
 Globals:
   Function:
     Timeout: 3
 Resources:
-  HelloWorldFunction:
+  ChatAPIFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: hello-world/
+      CodeUri: chat-api/
       Handler: app.lambdaHandler
       Runtime: nodejs8.10
       Policies: AmazonS3ReadOnlyAccess
@@ -23,12 +23,12 @@ Resources:
             Path: /{proxy+}
             Method: ANY
 Outputs:
-  HelloWorldApi:
-    Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
-  HelloWorldFunction:
+  ChatAPIEndpoint:
+    Description: API Gateway endpoint URL for Prod stage for Chat API function
+    Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/
+  ChatAPIFunction:
     Description: Hello World Lambda Function ARN
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
+    Value: !GetAtt ChatAPIFunction.Arn
+  ChatAPIFunctionIamRole:
     Description: Implicit IAM Role created for Hello World function
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+    Value: !GetAtt ChatAPIFunctionRole.Arn
