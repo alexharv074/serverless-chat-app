@@ -20,8 +20,10 @@ Resources:
         ProxyApiGreedy:
           Type: Api
           Properties:
-            Path: /{proxy+}
+            Path: /
             Method: ANY
+            RestApiId:
+              Ref: ServerlessRestApi
 Outputs:
   ChatAPIEndpoint:
     Description: API Gateway endpoint URL for Prod stage for Chat API function
