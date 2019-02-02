@@ -2,7 +2,7 @@
 
 . data.sh
 
-cd sam-app
+cd chat-app
 
 set -x
 
@@ -14,5 +14,5 @@ sam package \
 
 sam deploy \
   --template-file packaged.yaml \
-  --stack-name sam-app \
+  --stack-name ChatApp \
   --capabilities CAPABILITY_IAM || exit $?
