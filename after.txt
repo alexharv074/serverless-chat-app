@@ -1,0 +1,50 @@
+APIs:
+{
+    "items": [
+        {
+            "apiKeySource": "HEADER",
+            "name": "sam-app",
+            "endpointConfiguration": {
+                "types": [
+                    "EDGE"
+                ]
+            },
+            "version": "1.0",
+            "createdDate": 1549105380,
+            "id": "yww9nj3e67"
+        }
+    ]
+}
+API resources:
+{
+    "items": [
+        {
+            "path": "/{proxy+}",
+            "resourceMethods": {
+                "ANY": {}
+            },
+            "id": "twrtp6",
+            "pathPart": "{proxy+}",
+            "parentId": "y95jrixxr8"
+        },
+        {
+            "path": "/",
+            "id": "y95jrixxr8"
+        }
+    ]
+}
+API method ANY:
+{
+    "apiKeyRequired": false,
+    "httpMethod": "ANY",
+    "authorizationType": "NONE",
+    "methodIntegration": {
+        "passthroughBehavior": "WHEN_NO_MATCH",
+        "timeoutInMillis": 29000,
+        "uri": "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-2:885164491973:function:sam-app-ChatAPIFunction-11GSATZTWHKQR/invocations",
+        "httpMethod": "POST",
+        "cacheNamespace": "twrtp6",
+        "type": "AWS_PROXY",
+        "cacheKeyParameters": []
+    }
+}
