@@ -17,11 +17,11 @@ Resources:
         Variables:
           PARAM1: VALUE
       Events:
-        HelloWorld:
+        ProxyApiGreedy:
           Type: Api
           Properties:
-            Path: /hello
-            Method: get
+            Path: /{proxy+}
+            Method: ANY
 Outputs:
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
