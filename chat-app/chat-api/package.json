@@ -1,18 +1,17 @@
 {
-  "name": "hello_world",
+  "name": "chat_api",
+  "description": "Chat API",
   "version": "1.0.0",
-  "description": "hello world sample for NodeJS",
+  "repository": "git@github.com:alexharv074/serverless-chat-app.git",
   "main": "src/index.js",
-  "repository": "https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-nodejs",
   "author": "SAM CLI",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^0.18.0"
-  },
+  "dependencies": {},
   "scripts": {
     "test": "mocha tests/unit/"
   },
   "devDependencies": {
+    "aws-sdk": "latest",
     "chai": "^4.1.2",
     "mocha": "^5.1.1"
   }

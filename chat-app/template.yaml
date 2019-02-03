@@ -10,12 +10,9 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: chat-api/
-      Handler: app.lambdaHandler
+      Handler: index.handler
       Runtime: nodejs8.10
       Policies: AmazonS3ReadOnlyAccess
-      Environment:
-        Variables:
-          PARAM1: VALUE
       Events:
         ProxyApiGreedy:
           Type: Api
@@ -27,8 +24,8 @@ Outputs:
     Description: API Gateway endpoint URL for Prod stage for Chat API function
     Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/
   ChatAPIFunction:
-    Description: Hello World Lambda Function ARN
+    Description: Lambda Function ARN
     Value: !GetAtt ChatAPIFunction.Arn
   ChatAPIFunctionIamRole:
-    Description: Implicit IAM Role created for Hello World function
+    Description: Implicit IAM Role created for function
     Value: !GetAtt ChatAPIFunctionRole.Arn
