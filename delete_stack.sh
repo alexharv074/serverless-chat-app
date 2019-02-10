@@ -6,4 +6,4 @@ cd chat-app
 
 set -x
 
-aws cloudformation delete-stack --stack-name ChatApp
+aws cloudformation delete-stack --stack-name $stack_name

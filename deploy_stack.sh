@@ -14,5 +14,5 @@ sam package \
 
 sam deploy \
   --template-file packaged.yaml \
-  --stack-name ChatApp \
+  --stack-name $stack_name \
   --capabilities CAPABILITY_IAM || exit $?
