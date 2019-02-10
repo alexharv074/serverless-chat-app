@@ -5,6 +5,8 @@ Description: Serverless Chat App
 Globals:
   Function:
     Timeout: 3
+  Api:
+    Cors: "'*'"
 Resources:
   ChatAPIFunction:
     Type: AWS::Serverless::Function
