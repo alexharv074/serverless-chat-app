@@ -28,7 +28,7 @@ Resources:
 Outputs:
   ChatAPIEndpoint:
     Description: API Gateway endpoint URL for Prod stage for Chat API function
-    Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/conversations/
+    Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
   ChatAPIFunction:
     Description: Lambda Function ARN
     Value: !GetAtt ChatAPIFunction.Arn
