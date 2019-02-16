@@ -5,6 +5,7 @@ var AWS = require('aws-sdk');
 var S3 = new AWS.S3();
 
 var bucket = 'alexharvey3118';
+var bucket_url = 'http://' + bucket + '.s3-website-ap-southeast-2.amazonaws.com';
 
 exports.handler = function (event, context, callback) {
 
@@ -14,7 +15,7 @@ exports.handler = function (event, context, callback) {
             body: err ? JSON.stringify(err) : JSON.stringify(res),
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': bucket_url,
             }
         });
     };
