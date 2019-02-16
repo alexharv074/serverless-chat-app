@@ -1,3 +1,3 @@
 var ChatApp = window.ChatApp || {};
 
-ChatApp.apiEndpoint = 'https://6ov53db113.execute-api.ap-southeast-2.amazonaws.com/Prod/';
+ChatApp.apiEndpoint = 'https://2ccenhdqbc.execute-api.ap-southeast-2.amazonaws.com/Prod/';
