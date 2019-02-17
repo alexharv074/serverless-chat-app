@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 s3_bucket='alexharvey3118'
-stack_name='ChatAPI'
+stack_name='ChatApp'

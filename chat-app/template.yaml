@@ -12,10 +12,10 @@ Globals:
       AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
       AllowOrigin: "'*'"
 Resources:
-  ChatAPIFunction:
+  ChatAppFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: chat-api/
+      CodeUri: api/
       Handler: index.handler
       Runtime: nodejs8.10
       Policies: AmazonS3ReadOnlyAccess
@@ -26,12 +26,12 @@ Resources:
             Path: /{proxy+}
             Method: ANY
 Outputs:
-  ChatAPIEndpoint:
+  ChatAppEndpoint:
     Description: API Gateway endpoint URL for Prod stage for Chat API function
     Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
-  ChatAPIFunction:
+  ChatAppFunction:
     Description: Lambda Function ARN
-    Value: !GetAtt ChatAPIFunction.Arn
-  ChatAPIFunctionIamRole:
+    Value: !GetAtt ChatAppFunction.Arn
+  ChatAppFunctionIamRole:
     Description: Implicit IAM Role created for function
-    Value: !GetAtt ChatAPIFunctionRole.Arn
+    Value: !GetAtt ChatAppFunctionRole.Arn
