@@ -194,9 +194,3 @@ Outputs:
   ChatAppEndpoint:
     Description: API Gateway endpoint URL for Prod stage for Chat API function
     Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
-  ChatAppFunction:
-    Description: Lambda Function ARN
-    Value: !GetAtt ChatAppFunction.Arn
-  ChatAppFunctionIamRole:
-    Description: Implicit IAM Role created for function
-    Value: !GetAtt ChatAppFunctionRole.Arn
