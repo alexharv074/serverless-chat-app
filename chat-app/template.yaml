@@ -25,6 +25,52 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: ANY
+  ChatMessagesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ChatMessages
+      AttributeDefinitions:
+        - AttributeName: ConversationId
+          AttributeType: S
+        - AttributeName: Timestamp
+          AttributeType: N
+      KeySchema:
+        - AttributeName: ConversationId
+          KeyType: HASH
+        - AttributeName: Timestamp
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+  ChatConversationsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ChatConversations
+      AttributeDefinitions:
+        - AttributeName: ConversationId
+          AttributeType: S
+        - AttributeName: Username
+          AttributeType: S
+      KeySchema:
+        - AttributeName: ConversationId
+          KeyType: HASH
+        - AttributeName: Username
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      GlobalSecondaryIndexes:
+        - IndexName: Username-ConversationId-index
+          KeySchema:
+            - AttributeName: Username
+              KeyType: HASH
+            - AttributeName: ConversationId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
 Outputs:
   ChatAppEndpoint:
     Description: API Gateway endpoint URL for Prod stage for Chat API function
