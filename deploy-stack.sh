@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if ! which -s sam ; then
+  echo "sam not found. Try . virtualenv/bin/activate"
+  exit 1
+fi
+
 . data.sh
 
 cd chat-app
