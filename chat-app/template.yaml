@@ -12,8 +12,6 @@ Globals:
       AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
       AllowOrigin: "'*'"
 Resources:
-
-  # Lambda function.
   ChatAppFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -27,8 +25,6 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: ANY
-
-  # DynamoDB Tables.
   ChatMessagesTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -75,121 +71,6 @@ Resources:
           ProvisionedThroughput:
             ReadCapacityUnits: 1
             WriteCapacityUnits: 1
-
-  # SNS Topic.
-  ChatDynamoDBTopic:
-    Type: AWS::SNS::Topic
-    Properties:
-      TopicName: ChatDynamoDB
-
-  # CloudWatch Alarms.
-  ChatMessagesReadCapacityUnitsLimitBasicAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmName: ChatMessages-ReadCapacityUnitsLimit-BasicAlarm
-      Namespace: AWS/DynamoDB
-      Dimensions:
-        - Name: TableName
-          Value: !Ref ChatMessagesTable
-      MetricName: ConsumedReadCapacityUnits
-      EvaluationPeriods: 5
-      Period: 60
-      Threshold: 48.0
-      Statistic: Sum
-      ComparisonOperator: GreaterThanOrEqualToThreshold
-      ActionsEnabled: true
-      AlarmActions:
-        - !Ref ChatDynamoDBTopic
-  ChatMessagesWriteCapacityUnitsLimitBasicAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmName: ChatMessages-WriteCapacityUnitsLimit-BasicAlarm
-      Namespace: AWS/DynamoDB
-      Dimensions:
-        - Name: TableName
-          Value: !Ref ChatMessagesTable
-      MetricName: ConsumedWriteCapacityUnits
-      EvaluationPeriods: 5
-      Period: 60
-      Threshold: 48.0
-      Statistic: Sum
-      ComparisonOperator: GreaterThanOrEqualToThreshold
-      ActionsEnabled: true
-      AlarmActions:
-        - !Ref ChatDynamoDBTopic
-  ChatConversationsReadCapacityUnitsLimitBasicAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmName: ChatConversations-ReadCapacityUnitsLimit-BasicAlarm
-      Namespace: AWS/DynamoDB
-      Dimensions:
-        - Name: TableName
-          Value: !Ref ChatConversationsTable
-      MetricName: ConsumedReadCapacityUnits
-      EvaluationPeriods: 5
-      Period: 60
-      Threshold: 48.0
-      Statistic: Sum
-      ComparisonOperator: GreaterThanOrEqualToThreshold
-      ActionsEnabled: true
-      AlarmActions:
-        - !Ref ChatDynamoDBTopic
-  ChatConversationsUsernameConversationIdindexReadCapacityUnitsLimitBasicAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmName: ChatConversations-Username-ConversationId-index-ReadCapacityUnitsLimit-BasicAlarm
-      Namespace: AWS/DynamoDB
-      Dimensions:
-        - Name: TableName
-          Value: !Ref ChatConversationsTable
-        - Name: GlobalSecondaryIndexName
-          Value: Username-ConversationId-index
-      MetricName: ConsumedReadCapacityUnits
-      EvaluationPeriods: 60
-      Period: 60
-      Threshold: 48.0
-      Statistic: Sum
-      ComparisonOperator: GreaterThanOrEqualToThreshold
-      ActionsEnabled: true
-      AlarmActions:
-        - !Ref ChatDynamoDBTopic
-  ChatConversationsWriteCapacityUnitsLimitBasicAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmName: ChatConversations-WriteCapacityUnitsLimit-BasicAlarm
-      Namespace: AWS/DynamoDB
-      Dimensions:
-        - Name: TableName
-          Value: !Ref ChatConversationsTable
-      MetricName: ConsumedWriteCapacityUnits
-      EvaluationPeriods: 5
-      Period: 60
-      Threshold: 48.0
-      Statistic: Sum
-      ComparisonOperator: GreaterThanOrEqualToThreshold
-      ActionsEnabled: true
-      AlarmActions:
-        - !Ref ChatDynamoDBTopic
-  ChatConversationsUsernameConversationIdindexWriteCapacityUnitsLimitBasicAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmName: ChatConversations-Username-ConversationId-index-WriteCapacityUnitsLimit-BasicAlarm
-      Namespace: AWS/DynamoDB
-      Dimensions:
-        - Name: TableName
-          Value: !Ref ChatConversationsTable
-        - Name: GlobalSecondaryIndexName
-          Value: Username-ConversationId-index
-      MetricName: ConsumedWriteCapacityUnits
-      EvaluationPeriods: 60
-      Period: 60
-      Threshold: 48.0
-      Statistic: Sum
-      ComparisonOperator: GreaterThanOrEqualToThreshold
-      ActionsEnabled: true
-      AlarmActions:
-        - !Ref ChatDynamoDBTopic
-
 Outputs:
   ChatAppEndpoint:
     Description: API Gateway endpoint URL for Prod stage for Chat API function
