@@ -71,6 +71,22 @@ Resources:
           ProvisionedThroughput:
             ReadCapacityUnits: 1
             WriteCapacityUnits: 1
+  ChatDynamoDB:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: ChatDynamoDB
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:BatchWriteItem
+              - dynamodb:PutItem
+              - dynamodb:Query
+            Resource:
+              - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/ChatConversations
+              - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/ChatMessages
+              - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/ChatConversations/index/Username-ConversationId-index
 Outputs:
   ChatAppEndpoint:
     Description: API Gateway endpoint URL for Prod stage for Chat API function
