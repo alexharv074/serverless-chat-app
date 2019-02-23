@@ -25,6 +25,29 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: ANY
+  ChatEmptyModel:
+    Type: AWS::ApiGateway::Model
+    Properties:
+      RestApiId: !Ref ServerlessRestApi
+      ContentType: application/json
+      Name: Empty
+      Schema:
+        "$schema": "http://json-schema.org/draft-04/schema#"
+        title: Empty Schema
+        type: object
+  ChatErrorModel:
+    Type: AWS::ApiGateway::Model
+    Properties:
+      RestApiId: !Ref ServerlessRestApi
+      ContentType: application/json
+      Name: Error
+      Schema:
+        "$schema": "http://json-schema.org/draft-04/schema#"
+        title: Error Schema
+        type: object
+        properties:
+          message:
+            type: string
   ChatMessagesTable:
     Type: AWS::DynamoDB::Table
     Properties:
