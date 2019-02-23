@@ -2,3 +2,4 @@ awscli
 aws-sam-cli
 pytest
 pytest-mock
+ipdb
