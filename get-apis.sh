@@ -29,6 +29,10 @@ for rest_api_id in $rest_api_ids ; do
 
     done
   done
+
+  echo "API models:"
+  aws apigateway get-models \
+    --rest-api-id $rest_api_id | tee models.json
 done
 
-rm -f rest_apis.json resources.json methods*json
+rm -f rest_apis.json resources.json methods*json models.json
